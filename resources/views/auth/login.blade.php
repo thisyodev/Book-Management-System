@@ -38,13 +38,13 @@
       </div>
 
       <!-- Remember / Forgot -->
-      <div class="flex justify-between items-center text-sm">
+      {{-- <div class="flex justify-between items-center text-sm">
         <label class="inline-flex items-center">
           <input type="checkbox" name="remember" class="form-checkbox text-[#a86f3f] focus:ring-[#b2927d]" />
           <span class="ml-2 text-gray-600">Remember me</span>
         </label>
         <a href="#" class="text-[#a86f3f] hover:underline">Forgot password?</a>
-      </div>
+      </div> --}}
 
       <!-- Submit -->
       <button type="submit"

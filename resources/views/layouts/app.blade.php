@@ -28,7 +28,7 @@
             <div class="flex justify-between items-center h-16">
 
                 <!-- Logo -->
-                <a href="{{ url('/') }}"
+                <a href="{{ route('books.index') }}"
                     class="flex items-center gap-2 text-xl font-bold text-blue-600 dark:text-blue-400">
                     📚 <span class="hidden sm:inline">Book Manager</span>
                 </a>
