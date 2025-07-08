@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
+
+
 class BookApiController extends Controller
 {
     /**
@@ -84,15 +88,25 @@ class BookApiController extends Controller
      */
     public function update(Request $req, $id)
     {
-        $book = Book::findOrFail($id);
-        $data = $req->validate([
-            'title' => 'required|string',
-            'author' => 'required|string',
-            'published_year' => 'nullable|integer',
-            'genre' => 'nullable|string|max:100',
-        ]);
-        $book->update($data);
-        return response()->json($book);
+        try {
+            $data = $req->validate([
+                'title' => 'required|string',
+                'author' => 'required|string',
+                'published_year' => 'nullable|integer',
+                'genre' => 'nullable|string|max:100',
+            ]);
+
+            $book = Book::findOrFail($id);
+            $book->update($data);
+
+            return response()->json($book);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Book not found'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Unexpected error'], 500);
+        }
     }
 
     /**

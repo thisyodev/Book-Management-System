@@ -34,6 +34,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            \App\Http\Middleware\ApiJsonMiddleware::class, // บังคับ JSON response
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
