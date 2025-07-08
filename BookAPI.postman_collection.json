@@ -1,0 +1,144 @@
+{
+    "info": {
+        "name": "Book API Collection",
+        "_postman_id": "a1234567-1234-1234-1234-abcdef123456",
+        "description": "Laravel JWT Auth + Book CRUD",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Register",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password\",\n  \"password_confirmation\": \"password\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/register",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "register"]
+                }
+            }
+        },
+        {
+            "name": "Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/login",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "login"]
+                }
+            }
+        },
+        {
+            "name": "Me (Get User)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/me",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "me"]
+                }
+            }
+        },
+        {
+            "name": "Logout",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/logout",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "logout"]
+                }
+            }
+        },
+        {
+            "name": "Get Books",
+            "request": {
+                "method": "GET",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/books",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "books"]
+                }
+            }
+        },
+        {
+            "name": "Add Book",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" },
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"title\": \"Clean Code\",\n  \"author\": \"Robert C. Martin\",\n  \"published_year\": 2008,\n  \"genre\": \"Programming\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/books",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "books"]
+                }
+            }
+        },
+        {
+            "name": "Update Book",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" },
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"title\": \"Clean Coder\",\n  \"author\": \"Robert Martin\",\n  \"published_year\": 2011,\n  \"genre\": \"Software\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/books/1",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "books", "1"]
+                }
+            }
+        },
+        {
+            "name": "Delete Book",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/books/1",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "books", "1"]
+                }
+            }
+        }
+    ],
+    "variable": [
+        { "key": "base_url", "value": "http://localhost:8000" },
+        { "key": "token", "value": "" }
+    ]
+}
